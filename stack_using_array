@@ -1,0 +1,116 @@
+import java.util.Scanner;
+public class Main{
+    int arr[];
+    int size;
+    int top;
+    Main(int size){
+        this.size=size;
+        arr=new int[size];
+        top=-1;
+    }
+    void  push(int a){
+        if(top>=size-1){
+            System.out.println("stack is overflow");
+        }
+        else{
+            top++;
+            arr[top]=a;
+        }
+    }
+    void  pop(){
+        if(top<0){
+            System.out.println("stack is under flow");
+        }
+        else{
+            System.out.println("deleted element is"+arr[top]);
+            top--;
+        }
+    }
+    void  isempty(){
+        if(top<0){
+            System.out.println("the stack is empty");
+        }
+        else{
+            System.out.println("the stack is not empty");
+        }
+    }
+    void  isfull(){
+        if(top>=size-1){
+            System.out.println("the stack is full");
+        }
+        else{
+            System.out.println("the stack is not full");
+        }
+    }
+    void  print(){
+        for(int i=top;i>=0;i--){
+            System.out.println(arr[i]);
+        }
+    }
+    void search(int value){
+        for(int i=top;i>=0;i--){
+            if(value==arr[i]){
+                System.out.println("the value "+value+" is present in the position "+i );
+                break;
+            }
+            else{
+                System.out.println("value not prsent in the stack");
+            }
+        }
+    } 
+    void sort(){
+        for(int i=0;i<=top;i++){
+            for(int j=i+1;j<=top;j++){
+                if(arr[i]>arr[j]){
+                    int temp=arr[i];
+                    arr[i]=arr[j];
+                    arr[j]=temp;
+                }
+            }
+        }
+    }
+	public static void main(String[] args) {
+	    Scanner input=new Scanner(System.in);
+		System.out.println("\nenter the size of the stack\n");
+		int val=input.nextInt();
+		Main x=new Main(val);
+        boolean a=true;
+        while(a){
+        System.out.println("\nenter 1 to add element\nenter 2 to delete element\nenter3 to check wheather it is full\nenter 4 to check weather it is empty\nenter 5 to print\nenter 6 to quit\nenter 7 to search\nenter  8 to sort\n");
+        int choice=input.nextInt();
+        switch(choice){
+         case 1:
+             System.out.println("\nenter the value");
+             int v=input.nextInt();
+             x.push(v);
+             break;
+         case 2:
+            x.pop();
+            break;
+         case 3:
+            x.isfull();
+            break;
+         case 4:
+            x.isempty();
+            break;
+         case 5:
+            x.print();
+            break;
+         case 6:
+            a=false;
+            break;
+         case 7:
+            System.out.println("\nenter the value to search");
+            int value=input.nextInt();
+            x.search(value);
+            break;
+         case 8:
+             x.sort();
+             break;
+         default:
+         System.out.println("\nenter valid input");
+         break;
+        }
+        }
+	}
+}
